@@ -1,8 +1,0 @@
-lib: [
-  "/Users/ulrik.strid/Projects/private/reason-fswatch/_esy/default/store/b/reason_fswatch-21cfca8f/install/default/lib/reason_fswatch/META"
-  "/Users/ulrik.strid/Projects/private/reason-fswatch/_esy/default/store/b/reason_fswatch-21cfca8f/install/default/lib/reason_fswatch/dune-package"
-  "/Users/ulrik.strid/Projects/private/reason-fswatch/_esy/default/store/b/reason_fswatch-21cfca8f/install/default/lib/reason_fswatch/opam"
-]
-bin: [
-  "/Users/ulrik.strid/Projects/private/reason-fswatch/_esy/default/store/b/reason_fswatch-21cfca8f/install/default/bin/reason_fswatch"
-]

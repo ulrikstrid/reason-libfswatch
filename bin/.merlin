@@ -1,8 +1,0 @@
-EXCLUDE_QUERY_DIR
-B /Users/ulrik.strid/.esy/3_____________________________________________________________/i/reason_native__s__console-0.1.0-e80709cd/lib/console/lib
-B /Users/ulrik.strid/Projects/private/reason-fswatch/_esy/default/store/b/reason_fswatch-21cfca8f/default/bin/.main.eobjs/byte
-B /Users/ulrik.strid/Projects/private/reason-fswatch/_esy/default/store/b/reason_fswatch-21cfca8f/default/lib/.reason_fswatch.objs/byte
-S /Users/ulrik.strid/.esy/3_____________________________________________________________/i/reason_native__s__console-0.1.0-e80709cd/lib/console/lib
-S .
-S ../lib
-FLG -ccopt -lfswatch
