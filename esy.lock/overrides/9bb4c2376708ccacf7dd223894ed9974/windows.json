@@ -1,0 +1,56 @@
+{
+  "version": "1.13.0",
+  "source": "https://github.com/emcrisostomo/fswatch/releases/download/1.13.0/fswatch-1.13.0.tar.gz#c533fb6d9206814e12541282a76570412f65dc10",
+  "override": {
+    "buildsInSource": true,
+    "build": [
+      [
+        "bash",
+        "-c",
+        "#{os == 'windows' ? './prepare-windows.sh' : 'true'}"
+      ],
+      "find ./ -exec touch -t 200905010101 {} +",
+      [
+        "./configure",
+        "#{os == 'windows' ? '--host=x86_64-w64-mingw32' : ''}",
+        "#{os == 'windows' ? 'CFLAGS=\"-DHAVE_WINDOW\"' : ''}",
+        "#{os == 'windows' ? 'CXXFLAGS=\"-DHAVE_WINDOWS\"' : ''}",
+        "--prefix=#{self.install}",
+        "--disable-dependency-tracking",
+        "--disable-silent-rules"
+      ],
+      [
+        "bash",
+        "-c",
+        "#{os == 'windows' ? './build-windows.sh' : 'true'}"
+      ],
+      "make",
+      "make install"
+    ],
+    "buildEnv": {
+      "WINDOWS_AVAILABLE": "#{os == 'windows' ? 'yes' : 'no'}",
+      "CYGWIN_AVAILABLE": "#{os == 'windows' ? 'yes' : 'no'}"
+    },
+    "exportedEnv": {
+      "FSWATCH_INCLUDE_PATH": {
+        "val": "#{self.install / 'include'}",
+        "scope": "global"
+      },
+      "FSWATCH_BIN_PATH": {
+        "val": "#{self.install / 'fswatch'}",
+        "scope": "global"
+      },
+      "PATH": {
+        "scope": "global",
+        "val": "#{os == 'windows' ? '/usr/x86_64-w64-mingw32/sys-root/mingw/bin:$PATH': $PATH}"
+      }
+    },
+    "dependencies": {
+      "libtools": "esy-packages/esy-libtools#0fe768722d345533f86df32f4de3b6a374160e2e",
+      "gettext": "ulrikstrid/esy-gettext-1:package.json#9250ec0",
+      "automake": "esy-packages/esy-automake#f4fecab89169dd64cc363ec902d828c55c257fc0",
+      "autoconf": "esy-packages/esy-autoconf#ea58671a08c7ebf89b0cebd41f4950ca67157b01",
+      "libiconv": "esy-packages/esy-libiconv#38bab1ac2d53ae01b9c945620f6267446c4b2baa"
+    }
+  }
+}

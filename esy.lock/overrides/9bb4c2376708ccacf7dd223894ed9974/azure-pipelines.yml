@@ -1,0 +1,40 @@
+jobs:
+- job: macOS
+  pool:
+    vmImage: 'macOS-latest'
+  steps:
+    - template: ./.ci/use-esy.yml
+    - bash: ./test.sh
+      displayName: "Test package"
+
+- job: Linux
+  pool:
+    vmImage: 'Ubuntu-latest'
+  steps:
+    - template: ./.ci/use-esy.yml
+    - bash: ./test.sh
+      displayName: "Test package"
+
+- job: Windows
+  pool:
+    vmImage: 'windows-latest'
+  steps:
+    - template: ./.ci/use-esy.yml
+    - bash: mkdir -p test_dir
+      displayName: 'make test dir'
+    - bash: |
+        echo '{"dependencies": {"fswatch" : "ulrikstrid/esy-fswatch:windows.json#'$(git rev-parse --short HEAD)'"}}' > package.json
+      displayName: 'create test package.json'
+      workingDirectory: test_dir
+    - script: esy --project windows install
+      displayName: 'Install esy-deps'
+      workingDirectory: test_dir
+    - script: esy --project windows build --verbose
+      displayName: 'Build test project'
+      workingDirectory: test_dir
+    - script: esy --project windows b fswatch --help
+      displayName: 'Test if fswatch is installed'
+      workingDirectory: test_dir
+    - script: esy --project windows b which fswatch
+      displayName: 'Test if fswatch is installed'
+      workingDirectory: test_dir

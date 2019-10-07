@@ -1,0 +1,22 @@
+{
+  "name": "reason-fswatch",
+  "esy": {
+    "build": "dune build -p reason_fswatch",
+    "buildDev": "refmterr dune build --root .",
+    "buildEnv": {
+      "CC": "gcc",
+      "FSWATCH_INC": "-I#{fswatch.install / 'include' / 'libfswatch' / 'c'}",
+      "LIBRARY_PATH": "#{fswatch.lib}"
+    }
+  },
+  "scripts": { "format": "dune build @fmt --auto-promote" },
+  "dependencies": {
+    "@opam/dune": "*",
+    "@opam/reason": "*",
+    "@opam/utop": "^1.4.1",
+    "@reason-native/console": "^0.1.0",
+    "fswatch": "ulrikstrid/esy-fswatch:esy.json#8ee362c",
+    "ocaml": "< 4.09.0"
+  },
+  "devDependencies": { "refmterr": "*", "@opam/odoc": "*" }
+}

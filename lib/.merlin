@@ -1,0 +1,4 @@
+EXCLUDE_QUERY_DIR
+B /Users/ulrik.strid/Projects/private/reason-fswatch/_esy/default/store/b/reason_fswatch-21cfca8f/default/lib/.reason_fswatch.objs/byte
+S .
+FLG -open Reason_fswatch -cclib -lfswatch
