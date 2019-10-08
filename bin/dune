@@ -1,5 +1,5 @@
 (executable
  (public_name reason_fswatch)
  (name main)
- (libraries reason_fswatch console.lib)
+ (libraries reason_fswatch)
  (flags -ccopt -lfswatch))

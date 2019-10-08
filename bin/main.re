@@ -1,15 +1,10 @@
-let () = print_endline("start");
-
 open Reason_fswatch;
-
 
 Libfswatch.init();
 
 let handle = Libfswatch.make_handle(Libfswatch.Fsevents_monitor_type);
 let _ = Libfswatch.add_path(handle, "./lib");
 let _ = Libfswatch.add_path(handle, "./bin");
-
-Console.log("all paths set");
 
 let _ =
   Libfswatch.set_callback(handle, events => {
