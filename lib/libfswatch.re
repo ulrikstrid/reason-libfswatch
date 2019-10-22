@@ -55,7 +55,8 @@ external add_path: (handle, string) => status = "_fsw_add_path";
 
 external set_callback: handle => status = "_fsw_set_callback";
 
-let flag_of_string = str => switch (str) {
+let flag_of_string = str =>
+  switch (str) {
   | "NoOp" => NoOp
   | "PlatformSpecific" => PlatformSpecific
   | "Created" => Created
@@ -72,16 +73,16 @@ let flag_of_string = str => switch (str) {
   | "Link" => Link
   | "Overflow" => Overflow
   | _ => Unknown
-}
+  };
 
 let set_callback = (handle, callback) => {
   let callback = events => {
-    List.map(({path, string_flags}) => {
-      {
-        path,
-        flags: List.map(flag_of_string, string_flags)
-      }
-    }, events)
+    List.map(
+      ({path, string_flags}) => {
+        {path, flags: List.map(flag_of_string, string_flags)}
+      },
+      events,
+    )
     |> callback;
   };
   Callback.register("fswatch_callback", callback);

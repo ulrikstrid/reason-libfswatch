@@ -4,16 +4,21 @@
     "build": "dune build -p reason_fswatch",
     "buildDev": "refmterr dune build --root .",
     "buildEnv": {
-      "CC": "gcc",
-      "FSWATCH_INC": "-I#{fswatch.install / 'include' / 'libfswatch' / 'c'}",
-      "LIBRARY_PATH": "#{fswatch.lib}"
+      "LDFLAGS": "-L#{esy-fswatch-prebuilt.lib}",
+      "FSWATCH_INC_C": "#{esy-fswatch-prebuilt.install / 'include' / 'libfswatch' / 'c'}"
     }
+  },
+  "buildEnv": {
+    "FSWATCH_INC": "-I#{esy-fswatch-prebuilt.install / 'include' / 'libfswatch' / 'c'}",
+    "LIBRARY_PATH": "#{esy-fswatch-prebuilt.install / 'lib'}",
+    "FSWATCH_BIN_PATH": "#{esy-fswatch-prebuilt.install / 'bin'}"
   },
   "scripts": { "format": "dune build @fmt --auto-promote" },
   "dependencies": {
     "@opam/dune": "*",
     "@opam/reason": "*",
-    "fswatch": "ulrikstrid/esy-fswatch:esy.json#8ee362c",
+    "esy-fswatch": "ulrikstrid/esy-fswatch:esy.json#cb23ea43b778b383ac2886d9e8f166f311c53370",
+    "esy-fswatch-prebuilt": "ulrikstrid/esy-fswatch-prebuilt:package.json#d874f61",
     "ocaml": "< 4.09.0"
   },
   "devDependencies": { "refmterr": "*", "@opam/odoc": "*" }

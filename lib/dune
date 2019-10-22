@@ -1,6 +1,6 @@
 (library
  (name reason_fswatch)
  (public_name reason_fswatch)
- (c_names libfswatch)
- (c_flags (%{env:FSWATCH_INC=default}))
- (flags -cclib -lfswatch))
+ (c_names libfswatch_re)
+ (c_flags (-I%{env:FSWATCH_INC_C=default}))
+ (flags -ccopt (%{env:LDFLAGS=default}) -ccopt -lfswatch))
